@@ -1,67 +1,8 @@
 <template>
   <div>
-    <header class="header">
-      <svg class="goods-svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-           xmlns:xlink="http://www.w3.org/1999/xlink">
-        <defs>
-          <symbol id="icon-arrow-short" viewBox="0 0 25 32">
-            <title>arrow-short</title>
-            <path
-              d="M24.487 18.922l-1.948-1.948-8.904 8.904v-25.878h-2.783v25.878l-8.904-8.904-1.948 1.948 12.243 12.243z"></path>
-          </symbol>
-          <symbol id="icon-status-ok" viewBox="0 0 32 32">
-            <title>status-ok</title>
-            <path
-              d="M22.361 10.903l-9.71 9.063-2.998-2.998c-0.208-0.209-0.546-0.209-0.754 0s-0.208 0.546 0 0.754l3.363 3.363c0.104 0.104 0.241 0.156 0.377 0.156 0.131 0 0.261-0.048 0.364-0.143l10.087-9.414c0.215-0.201 0.227-0.539 0.026-0.754s-0.539-0.226-0.754-0.026z"></path>
-            <path
-              d="M16 30.933c-8.234 0-14.933-6.699-14.933-14.933s6.699-14.933 14.933-14.933c8.234 0 14.933 6.699 14.933 14.933s-6.699 14.933-14.933 14.933zM16 0c-8.822 0-16 7.178-16 16 0 8.823 7.178 16 16 16s16-7.177 16-16c0-8.822-7.178-16-16-16z"></path>
-          </symbol>
-          <symbol id="icon-cart" viewBox="0 0 38 32">
-            <title>cart</title>
-            <path
-              d="M37.759 0h-4.133c-0.733 0.004-1.337 0.549-1.434 1.255l-0.546 4.342c-0.081 0.484-0.496 0.849-0.997 0.849-0.005 0-0.009-0-0.014-0h-27.604c-0.003 0-0.007-0-0.011-0-1.674 0-3.031 1.357-3.031 3.031 0 0.34 0.056 0.666 0.159 0.971l2.52 8.062c0.385 1.194 1.486 2.043 2.785 2.043 0.126 0 0.25-0.008 0.372-0.023l22.983 0.002c0.515 0.131 0.626 0.768 0.626 1.283 0.005 0.044 0.009 0.095 0.009 0.146 0 0.501-0.294 0.933-0.718 1.134l-22.439 0.003c-0.354 0-0.642 0.287-0.642 0.642s0.287 0.642 0.642 0.642h22.745l0.131-0.071c0.919-0.392 1.551-1.287 1.551-2.33 0-0.058-0.002-0.116-0.006-0.173 0.021-0.108 0.033-0.24 0.033-0.376 0-1.072-0.732-1.973-1.724-2.23l-23.357-0.004c-0.063 0.008-0.135 0.013-0.209 0.013-0.719 0-1.332-0.455-1.566-1.093l-2.53-8.095c-0.048-0.154-0.076-0.332-0.076-0.515 0-0.973 0.782-1.764 1.752-1.778h27.657c1.159-0.004 2.112-0.883 2.232-2.011l0.547-4.345c0.010-0.083 0.078-0.147 0.161-0.152l4.133-0c0.354 0 0.642-0.287 0.642-0.642s-0.287-0.642-0.642-0.642z"></path>
-            <path
-              d="M31.323 9.69c-0.022-0.003-0.048-0.004-0.074-0.004-0.328 0-0.598 0.248-0.633 0.567l-0.809 7.268c-0.003 0.022-0.004 0.048-0.004 0.074 0 0.328 0.248 0.598 0.567 0.633l0.074 0c0.001 0 0.003 0 0.004 0 0.327 0 0.596-0.246 0.632-0.563l0.809-7.268c0.003-0.022 0.004-0.048 0.004-0.074 0-0.328-0.248-0.598-0.567-0.633z"></path>
-            <path
-              d="M27.514 25.594c-1.769 0-3.203 1.434-3.203 3.203s1.434 3.203 3.203 3.203c1.769 0 3.203-1.434 3.203-3.203s-1.434-3.203-3.203-3.203zM27.514 30.717c-1.060 0-1.92-0.86-1.92-1.92s0.86-1.92 1.92-1.92c1.060 0 1.92 0.86 1.92 1.92s-0.86 1.92-1.92 1.92z"></path>
-            <path
-              d="M9.599 25.594c-1.769 0-3.203 1.434-3.203 3.203s1.434 3.203 3.203 3.203c1.769 0 3.203-1.434 3.203-3.203s-1.434-3.203-3.203-3.203zM9.599 30.717c-1.060 0-1.92-0.86-1.92-1.92s0.86-1.92 1.92-1.92c1.060 0 1.92 0.86 1.92 1.92s-0.86 1.92-1.92 1.92z"></path>
-          </symbol>
-        </defs>
-      </svg>
 
-      <div class="navbar">
-        <div class="navbar-left-container">
-          <a href="/">
-            <img class="navbar-brand-logo" src="/static/logo.png">
-          </a>
-        </div>
-        <div class="navbar-right-container">
-          <div class="navbar-menu-container">
-            <!--<a href="/" class="navbar-link">我的账户</a>-->
-            <span class="navbar-link"></span>
-            <a href="javascript:void(0)" class="navbar-link">登录</a>
-            <!--<a href="javascript:void(0)" class="navbar-link">登出</a>-->
-            <div class="navbar-cart-container">
-              <span class="navbar-cart-count"></span>
-              <a class="navbar-link" href="/#/cart">
-                <svg class="navbar-cart-logo">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-cart"></use>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="nav-breadcrumb-wrap">
-      <div class="container">
-        <nav class="nav-breadcrumb">
-          <a href="/">主页</a>
-          <span>商品列表</span>
-        </nav>
-      </div>
-    </div>
+<nav-header></nav-header>
+    <nav-bread></nav-bread>
     <div class="accessory-result-page">
       <div class="container">
         <div class="filter-nav">
@@ -72,16 +13,16 @@
               <use xlink:href="#icon-arrow-short"></use>
             </svg>
           </a>
-          <a href="javascript:void(0)" class="filterby">筛选</a>
+          <a href="javascript:void(0)" class="filterby" @click.stop="showFilterPop">筛选</a>
         </div>
         <div class="accessory-result">
           <!-- filter -->
-          <div class="filter" id="filter">
+          <div class="filter" id="filter" v-bind:class="{'filterby-show':filterBy}">
             <dl class="filter-price">
               <dt>价格区间:</dt>
-              <dd><a href="javascript:void(0)">选择价格</a></dd>
-              <dd>
-                <a href="javascript:void(0)">￥ 0 - 100 元</a>
+              <dd><a href="javascript:void(0)" @click="setPriceFilter('all')" v-bind:class="{'cur':priceChecked=='all'}">选择价格</a></dd>
+              <dd v-for="(item,index) in priceFilter">
+                <a href="javascript:void(0)" @click="setPriceFilter(index)" v-bind:class="{'cur':priceChecked==index}">￥ {{item.startPrice}} - {{item.endPrice}} 元</a>
               </dd>
             </dl>
           </div>
@@ -90,13 +31,13 @@
           <div class="accessory-list-wrap">
             <div class="accessory-list col-4">
               <ul>
-                <li>
+                <li v-for="item in goodsList">
                   <div class="pic">
-                    <a href="#"><img src="/static/1.jpg" alt=""></a>
+                    <a href="#"><img v-lazy="'/static/'+  item.productImage" alt=""></a>
                   </div>
                   <div class="main">
-                    <div class="name">小米电视4 55英寸</div>
-                    <div class="price">3999</div>
+                    <div class="name">{{item.productName}}</div>
+                    <div class="price">{{item.salePrice}}</div>
                     <div class="btn-area">
                       <a href="javascript:;" class="btn btn--m">加入购物车</a>
                     </div>
@@ -108,26 +49,8 @@
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <div class="footer__wrap">
-        <div class="footer__secondary">
-          <div class="footer__inner">
-            <div class="footer__secondary__nav">
-              <span>Copyright©2013-2017 dongnaoedu.com All Rights Reserved.</span>
-              <a href="https://dongnaoedu.com/">
-                关于我们
-              </a>
-              <a href="http://dongnao.ke.qq.com/#tab=1&category=-1">
-                腾讯课堂&&动脑学院
-              </a>
-              <a href="https://dongnaoedu.com/index.html">
-                版权所有 2008-2017 湘ICP备16006411号-1
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+
+<nav-footer></nav-footer>
   </div>
 </template>
 
@@ -137,7 +60,131 @@
   import "./../assets/css/nav-bread.css"
    import "./../assets/css/nav-footer.css"
    import "./../assets/css/goods-list.css"
+ import navHeader from "./../components/NavHeader.vue"
+ import navBread from "./../components/NavBread.vue"
+ import navFooter from "./../components/NavFooter.vue"
+ import axios from 'axios'
 export default {
+
+  data() {
+    return {
+      goodsList:[],
+      priceFilter:[
+        {
+          startPrice:0,
+          endPrice:1000,
+        },
+        {
+          startPrice:1000,
+          endPrice:2000,
+        },
+        {
+          startPrice:2000,
+          endPrice:3000,
+        },
+        {
+          startPrice:3000,
+          endPrice:4000,
+        },
+        {
+          startPrice:4000,
+          endPrice:5000,
+        },
+      ],
+      priceChecked:'all',
+      filterBy:false,
+      overLayFlag:false
+    }
+  },
+  mounted() {
+    this.getGoodsList();
+  },
+     components:{
+         navHeader,
+         navFooter,
+         navBread
+     },
+
+  methods: {
+         getGoodsList() {
+           this.goodsList = [
+             {
+               "productId":"10001",
+               "productName":"小米空气净化器 2",
+               "salePrice":"699",
+               "productImage":"小米空气净化器 2.jpg"
+             },
+             {
+               "productId":"10002",
+               "productName":"米家空气净化器Pro",
+               "salePrice":"1499",
+               "productImage":"米家空气净化器Pro.jpg"
+             },
+             {
+               "productId":"10003",
+               "productName":"米家PM2.5检测仪",
+               "salePrice":"399",
+               "productImage":"米家PM2.5检测仪.jpg"
+             },
+             {
+               "productId":"10004",
+               "productName":"九号平衡车",
+               "salePrice":"1999",
+               "productImage":"九号平衡车.jpg"
+             },
+             {
+               "productId":"10005",
+               "productName":"小米路由器 3",
+               "salePrice":"139",
+               "productImage":"小米路由器 3.jpg"
+             },
+             {
+               "productId":"10006",
+               "productName":"米家压力 IH 电饭煲",
+               "salePrice":"999",
+               "productImage":"米家压力 IH 电饭煲.jpg"
+             },
+             {
+               "productId":"10007",
+               "productName":"米家IH电饭煲",
+               "salePrice":"399",
+               "productImage":"米家IH电饭煲.jpg"
+             },
+             {
+               "productId":"10008",
+               "productName":"米家恒温电水壶",
+               "salePrice":"199",
+               "productImage":"米家恒温电水壶.jpg"
+             },
+             {
+               "productId":"10009",
+               "productName":"米家小白智能摄像机",
+               "salePrice":"399",
+               "productImage":"米家小白智能摄像机.jpg"
+             },
+             {
+               "productId":"10010",
+               "productName":"Yeelight床头灯",
+               "salePrice":"249",
+               "productImage":"Yeelight床头灯.jpg"
+             }
+           ];
+           console.log(1,this.goodsList);
+         },
+    setPriceFilter(index){
+             this.priceChecked=index;
+    },
+    showFilterPop(){
+        console.log("弹出筛选")
+        this.filterBy=true;
+        this.overLayFlag=true;
+    },
+    closePop(){
+      this.filterBy=false;
+      this.overLayFlag=false;
+    }
+  },
+
 
 }
 
