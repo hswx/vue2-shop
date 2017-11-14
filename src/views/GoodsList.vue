@@ -108,9 +108,9 @@ export default {
 
   methods: {
          getGoodsList() {
-             axios.get("/goods").then((result)=>{
+             axios.get("http://localhost:3000/goods").then((result)=>{
                  console.log(result);
-               this.goodsList = result.data.result;
+               this.goodsList = result.data.result.list;
                  console.log(1,this.goodsList);
              })
 
@@ -119,7 +119,6 @@ export default {
              this.priceChecked=index;
     },
     showFilterPop(){
-        console.log("弹出筛选")
         this.filterBy=true;
         this.overLayFlag=true;
     },
