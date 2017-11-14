@@ -45,6 +45,12 @@
                 </li>
               </ul>
             </div>
+            <div class="view-more-normal"
+              v-infinite-scroll="loadMore"
+              infinite-scroll-disabled="busy"
+              infinite-scroll-distance="20">
+              <img src="./../../static/loading-svg/loading-spinning-bubbles.svg" v-show="loading">
+            </div>
           </div>
         </div>
       </div>
@@ -73,6 +79,8 @@ export default {
       pageSize: 8,
       sortFlag: true,
       goodsList:[],
+      busy: true,
+      loading: false,
       priceFilter:[
         {
           startPrice:0,
@@ -110,15 +118,33 @@ export default {
      },
 
   methods: {
-         getGoodsList() {
+         getGoodsList(flag) {
              var params={
                page: this.page,
                pageSize: this.pageSize,
                sort: this.sortFlag?1:-1
              }
+             this.loading=true;
              axios.get("http://localhost:3000/goods",{params}).then((result)=>{
-                 console.log(result);
-               this.goodsList = result.data.result.list;
+                 this.loading=false;
+
+               if(result.data.status=='0'){
+                 if(flag){
+                   this.goodsList=this.goodsList.concat(result.data.result.list);
+                   if(result.data.result.count==0){
+                   this.busy=true;
+                   }else{
+                   this.busy=false;
+                   }
+                 }else{
+                  this.goodsList=result.data.result.list;
+                  this.busy=false;
+                 }
+               }else{
+               this.goodsList=[];
+                  }
+
+
              })
 
          },
@@ -131,6 +157,13 @@ export default {
           this.sortFlag=!this.sortFlag;
           this.page=1;
           this.getGoodsList();
+         },
+         loadMore(){
+           this.busy=true;
+           setTimeout(()=>{
+           this.page++;
+           this.getGoodsList(true)
+           },500)
          },
     setPriceFilter(index){
              this.priceChecked=index;
