@@ -83,25 +83,29 @@ export default {
       loading: false,
       priceFilter:[
         {
-          startPrice:0,
-          endPrice:1000,
+          startPrice:'0.00',
+          endPrice:'100.00'
         },
         {
-          startPrice:1000,
-          endPrice:2000,
+          startPrice:'100.00',
+          endPrice:'500.00'
         },
         {
-          startPrice:2000,
-          endPrice:3000,
+          startPrice:'500.00',
+          endPrice:'1000.00'
         },
         {
-          startPrice:3000,
-          endPrice:4000,
+          startPrice:'1000.00',
+          endPrice:'2000.00'
         },
         {
-          startPrice:4000,
-          endPrice:5000,
+          startPrice:'2000.00',
+          endPrice:'3000.00'
         },
+        {
+          startPrice:'3000.00',
+          endPrice:'6000.00'
+        }
       ],
       priceChecked:'all',
       filterBy:false,
@@ -111,66 +115,70 @@ export default {
   mounted() {
     this.getGoodsList();
   },
-     components:{
-         navHeader,
-         navFooter,
-         navBread
-     },
+  components:{
+    navHeader,
+    navFooter,
+    navBread
+  },
 
   methods: {
-         getGoodsList(flag) {
-             var params={
-               page: this.page,
-               pageSize: this.pageSize,
-               sort: this.sortFlag?1:-1
-             }
-             this.loading=true;
-             axios.get("http://localhost:3000/goods",{params}).then((result)=>{
-                 this.loading=false;
+    getGoodsList(flag) {
+      var params={
+        page: this.page,
+        pageSize: this.pageSize,
+        sort: this.sortFlag?1:-1,
+        priceLevel: this.priceChecked
+      }
+      this.loading=true;
+      axios.get("http://localhost:3000/goods",{params}).then((result)=>{
+        this.loading=false;
 
-               if(result.data.status=='0'){
-                 if(flag){
-                   this.goodsList=this.goodsList.concat(result.data.result.list);
-                   if(result.data.result.count==0){
-                   this.busy=true;
-                   }else{
-                   this.busy=false;
-                   }
-                 }else{
-                  this.goodsList=result.data.result.list;
-                  this.busy=false;
-                 }
-               }else{
-               this.goodsList=[];
-                  }
+        if(result.data.status=='0'){
+          if(flag){
+            this.goodsList=this.goodsList.concat(result.data.result.list);
+            if(result.data.result.count==0){
+              this.busy=true;
+            }else{
+              this.busy=false;
+            }
+          }else{
+            this.goodsList=result.data.result.list;
+            this.busy=false;
+          }
+        }else{
+          this.goodsList=[];
+        }
 
 
-             })
+      })
 
-         },
-         defaultSort(){
-          this.sortFlag=true;
-          this.page=1;
-          this.getGoodsList();
-         },
-         sortGoods(){
-          this.sortFlag=!this.sortFlag;
-          this.page=1;
-          this.getGoodsList();
-         },
-         loadMore(){
-           this.busy=true;
-           setTimeout(()=>{
-           this.page++;
-           this.getGoodsList(true)
-           },500)
-         },
+    },
+    defaultSort(){
+      this.sortFlag=true;
+      this.page=1;
+      this.getGoodsList();
+    },
+    sortGoods(){
+      this.sortFlag=!this.sortFlag;
+      this.page=1;
+      this.getGoodsList();
+    },
+    loadMore(){
+      this.busy=true;
+      setTimeout(()=>{
+        this.page++;
+        this.getGoodsList(true)
+      },500)
+    },
     setPriceFilter(index){
-             this.priceChecked=index;
+        console.log(index);
+        this.page=1;
+      this.priceChecked=index;
+      this.getGoodsList();
     },
     showFilterPop(){
-        this.filterBy=true;
-        this.overLayFlag=true;
+      this.filterBy=true;
+      this.overLayFlag=true;
     },
     closePop(){
       this.filterBy=false;
