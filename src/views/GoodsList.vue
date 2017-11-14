@@ -69,6 +69,9 @@ export default {
 
   data() {
     return {
+      page: 2,
+      pageSize: 8,
+      sortFlag: 1,
       goodsList:[],
       priceFilter:[
         {
@@ -108,10 +111,14 @@ export default {
 
   methods: {
          getGoodsList() {
-             axios.get("http://localhost:3000/goods").then((result)=>{
+             var params={
+               page: this.page,
+               pageSize: this.pageSize,
+               sort: this.sortFlag
+             }
+             axios.get("http://localhost:3000/goods",{params}).then((result)=>{
                  console.log(result);
                this.goodsList = result.data.result.list;
-                 console.log(1,this.goodsList);
              })
 
          },
