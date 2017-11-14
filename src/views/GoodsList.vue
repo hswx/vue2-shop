@@ -123,7 +123,7 @@ export default {
 
          },
          defaultSort(){
-          this.sortFlag=1;
+          this.sortFlag=true;
           this.page=1;
           this.getGoodsList();
          },
