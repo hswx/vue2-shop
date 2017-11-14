@@ -7,8 +7,8 @@
       <div class="container">
         <div class="filter-nav">
           <span class="sortby">排序:</span>
-          <a href="javascript:void(0)" class="default cur">默认</a>
-          <a href="javascript:void(0)" class="price">价格
+          <a href="javascript:void(0)" class="default cur" @click="defaultSort()">默认</a>
+          <a href="javascript:void(0)" class="price" v-bind:class="{'sort-up':sortFlag}" @click="sortGoods()">价格
             <svg class="icon icon-arrow-short">
               <use xlink:href="#icon-arrow-short"></use>
             </svg>
@@ -71,7 +71,7 @@ export default {
     return {
       page: 2,
       pageSize: 8,
-      sortFlag: 1,
+      sortFlag: true,
       goodsList:[],
       priceFilter:[
         {
@@ -114,13 +114,23 @@ export default {
              var params={
                page: this.page,
                pageSize: this.pageSize,
-               sort: this.sortFlag
+               sort: this.sortFlag?1:-1
              }
              axios.get("http://localhost:3000/goods",{params}).then((result)=>{
                  console.log(result);
                this.goodsList = result.data.result.list;
              })
 
+         },
+         defaultSort(){
+          this.sortFlag=1;
+          this.page=1;
+          this.getGoodsList();
+         },
+         sortGoods(){
+          this.sortFlag=!this.sortFlag;
+          this.page=1;
+          this.getGoodsList();
          },
     setPriceFilter(index){
              this.priceChecked=index;
