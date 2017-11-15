@@ -32,7 +32,23 @@ app.all('*', function(req, res, next) {
   res.header("X-Powered-By",' 3.2.1')
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
-});
+})
+
+app.use(function (req, res, next) {
+  if(req.cookies.userId){
+    next();
+  }else {
+    if(req.originalUrl == '/users/login' || req.originalUrl == '/users/logout' || req.originalUrl.indexOf('/goods/list') > -1){
+      next();
+    }else {
+      res.json({
+        status: '10001',
+        msg: '当前未登录',
+        result: ''
+      })
+    }
+  }
+})
 
 app.use('/', index);
 app.use('/goods', goods);

@@ -130,7 +130,7 @@ export default {
         priceLevel: this.priceChecked
       }
       this.loading=true;
-      axios.get("http://localhost:3000/goods",{params}).then((result)=>{
+      axios.get("http://localhost:3000/goods/list",{params}).then((result)=>{
         this.loading=false;
 
         if(result.data.status=='0'){
