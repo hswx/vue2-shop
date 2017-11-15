@@ -130,7 +130,7 @@ export default {
         priceLevel: this.priceChecked
       }
       this.loading=true;
-      axios.get("http://localhost:3000/goods/list",{params}).then((result)=>{
+      axios.get("/goods/list",{params}).then((result)=>{
         this.loading=false;
 
         if(result.data.status=='0'){
@@ -185,7 +185,7 @@ export default {
       this.overLayFlag=false;
     },
     addCart(productId){
-        axios.post('http://localhost:3000/goods/addCart',{
+        axios.post('/goods/addCart',{
             productId:productId
         }).then((res)=>{
             var res=res.data;

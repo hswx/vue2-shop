@@ -105,13 +105,25 @@ export default {
       nickName: ''
     }
   },
+
   methods: {
+    checkLogin () {
+      axios.get('/users/checkLogin').then((response)=>{
+        var res = response.data;
+        if(res.status == '0'){
+          this.nickName = res.result;
+          this.loginModal = false;
+        }else{
+
+        }
+      })
+    },
     login () {
       if(!this.userName||!this.userPwd){
         this.errorTip = true;
         return ;
       }
-      axios.post("http://localhost:3000/users/login",{
+      axios.post("/users/login",{
         userName: this.userName,
         userPwd: this.userPwd
       }).then((response)=>{
@@ -126,7 +138,7 @@ export default {
       })
     },
     logOut() {
-      axios.post('http://localhost:3000/users/logout').then((response)=>{
+      axios.post('/users/logout').then((response)=>{
         let res = response.data;
         if(res.status == '0'){
           this.nickName = ''
@@ -134,6 +146,9 @@ export default {
       })
     }
 
-  }
+  },
+    mounted() {
+    this.checkLogin()
+  },
 }
 </script>
