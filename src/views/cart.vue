@@ -57,38 +57,38 @@
               </ul>
             </div>
             <ul class="cart-item-list">
-              <li>
+              <li v-for="item in cartList">
                 <div class="cart-tab-1">
                   <div class="cart-item-check">
-                    <a href="javascipt:;" class="checkbox-btn item-check-btn">
+                    <a href="javascipt:;" class="checkbox-btn item-check-btn" v-bind:class="{'check':item.checked=='1'}">
                       <svg class="icon icon-ok">
                         <use xlink:href="#icon-ok"></use>
                       </svg>
                     </a>
                   </div>
                   <div class="cart-item-pic">
-                    <img src="./../../static/1.jpg">
+                    <img v-lazy="'/static/'+item.productImage" v-bind:alt="item.productName">
                   </div>
                   <div class="cart-item-title">
-                    <div class="item-name">小米电视4 55英寸</div>
+                    <div class="item-name">{{item.productName}}</div>
                   </div>
                 </div>
                 <div class="cart-tab-2">
-                  <div class="item-price">3999</div>
+                  <div class="item-price">{{item.salePrice}}</div>
                 </div>
                 <div class="cart-tab-3">
                   <div class="item-quantity">
                     <div class="select-self select-self-open">
                       <div class="select-self-area">
                         <a class="input-sub">-</a>
-                        <span class="select-ipt">10</span>
+                        <span class="select-ipt">{{item.productNum}}</span>
                         <a class="input-add">+</a>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="cart-tab-4">
-                  <div class="item-price-total">39990</div>
+                  <div class="item-price-total">{{(item.productNum*item.salePrice)}}</div>
                 </div>
                 <div class="cart-tab-5">
                   <div class="cart-item-opration">
@@ -117,7 +117,7 @@
             </div>
             <div class="cart-foot-r">
               <div class="item-total">
-                总价: <span class="total-price">39990</span>
+                总价: <span class="total-price">{{totalPrice}}</span>
               </div>
               <div class="btn-wrap">
                 <a class="btn btn--red">去结算</a>
@@ -144,8 +144,11 @@
     export default{
         data(){
             return{
-                msg:'hello vue'
+                cartList: []
             }
+        },
+        mounted(){
+          this.init();
         },
  components:{
     navHeader,
@@ -153,7 +156,49 @@
     navBread,
     Modal
   },
-
+computed:{
+      totalPrice(){
+        var money = 0;
+         this.cartList.forEach((item)=>{
+           if(item.checked=='1'){
+             money += parseFloat(item.salePrice)*parseInt(item.productNum);
+           }
+        })
+         return money;
+       }
+     },
+     methods: {
+       init(){
+         axios.get("/users/cartList").then((response)=>{
+           let res = response.data;
+           this.cartList = res.result;
+         });
+      },
+     }
     }
 
 </script>
+<style scoped>
+  .input-sub,.input-add{
+    min-width: 40px;
+    height: 100%;
+    border: 0;
+    color: #605F5F;
+    text-align: center;
+    font-size: 16px;
+    overflow: hidden;
+    display: inline-block;
+    background: #f0f0f0;
+  }
+  .item-quantity .select-self-area{
+    background:none;
+    border: 1px solid #f0f0f0;
+  }
+  .item-quantity .select-self-area .select-ipt{
+    display: inline-block;
+    padding:0 3px;
+    width: 30px;
+    min-width: 30px;
+    text-align: center;
+  }
+</style>
