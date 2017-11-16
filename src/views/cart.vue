@@ -60,7 +60,8 @@
               <li v-for="item in cartList">
                 <div class="cart-tab-1">
                   <div class="cart-item-check">
-                    <a href="javascipt:;" class="checkbox-btn item-check-btn" v-bind:class="{'check':item.checked=='1'}">
+                    <a href="javascipt:;" class="checkbox-btn item-check-btn"
+                       v-bind:class="{'check':item.checked=='1'}">
                       <svg class="icon icon-ok">
                         <use xlink:href="#icon-ok"></use>
                       </svg>
@@ -92,7 +93,7 @@
                 </div>
                 <div class="cart-tab-5">
                   <div class="cart-item-opration">
-                    <a href="javascript:;" class="item-edit-btn">
+                    <a href="javascript:;" class="item-edit-btn" @click="delCartConfirm(item)">
                       <svg class="icon icon-del">
                         <use xlink:href="#icon-del"></use>
                       </svg>
@@ -127,6 +128,13 @@
         </div>
       </div>
     </div>
+    <Modal :mdShow="modalConfirm" @close="closeModal">
+      <p slot="message">你确认要删除此条数据吗?</p>
+      <div slot="btnGroup">
+        <a class="btn btn--m" href="javascript:;" @click="delCart">确认</a>
+        <a class="btn btn--m btn--red" href="javascript:;" @click="modalConfirm = false">关闭</a>
+      </div>
+    </Modal>
     <nav-footer></nav-footer>
   </div>
 </template>
@@ -144,7 +152,9 @@
     export default{
         data(){
             return{
-                cartList: []
+                cartList: [],
+                delItem: {},
+                modalConfirm: false
             }
         },
         mounted(){
@@ -174,8 +184,29 @@ computed:{
            this.cartList = res.result;
          });
       },
+       closeModal(){
+        this.modalConfirm = false;
+       },
+       delCartConfirm(item){
+         this.delItem = item;
+         this.modalConfirm = true;
+       },
+       delCart(){
+         axios.post("/users/cartDel",{
+           productId:this.delItem.productId
+         }).then((response)=>{
+           let res = response.data;
+           if(res.status == '0'){
+             this.modalConfirm = false;
+             var delCount = this.delItem.productNum;
+             this.init();
+           }
+         });
+       },
      }
     }
+
+
 
 </script>
 <style scoped>
@@ -201,4 +232,6 @@ computed:{
     min-width: 30px;
     text-align: center;
   }
+
+
 </style>
