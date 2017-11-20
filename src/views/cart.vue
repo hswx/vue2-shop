@@ -77,7 +77,7 @@
                   </div>
                 </div>
                 <div class="cart-tab-2">
-                  <div class="item-price">{{item.salePrice}}</div>
+                  <div class="item-price">{{item.salePrice | currency('￥')}}</div>
                 </div>
                 <div class="cart-tab-3">
                   <div class="item-quantity">
@@ -91,7 +91,7 @@
                   </div>
                 </div>
                 <div class="cart-tab-4">
-                  <div class="item-price-total">{{(item.productNum*item.salePrice)}}</div>
+                  <div class="item-price-total">{{(item.productNum*item.salePrice) | currency('￥')}}</div>
                 </div>
                 <div class="cart-tab-5">
                   <div class="cart-item-opration">
@@ -120,7 +120,7 @@
             </div>
             <div class="cart-foot-r">
               <div class="item-total">
-                总价: <span class="total-price">{{totalPrice}}</span>
+                总价: <span class="total-price">{{totalPrice | currency('￥')}}</span>
               </div>
               <div class="btn-wrap">
                 <a class="btn btn--red">去结算</a>
@@ -151,6 +151,7 @@
  import navFooter from "./../components/NavFooter.vue"
  import axios from 'axios'
  import Modal from './../components/Modal.vue'
+ import {currency} from './../util/currency.js'
     export default{
         data(){
             return{
@@ -161,6 +162,9 @@
         },
         mounted(){
           this.init();
+        },
+        filters:{
+          currency
         },
  components:{
     navHeader,
