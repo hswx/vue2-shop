@@ -17,14 +17,19 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path:'/GoodsList',
-      name:'GoodsList',
+      path: '/GoodsList',
+      name: 'GoodsList',
       component: GoodsList
     },
     {
-      path:'/cart',
-      name:'cart',
-      component:cart
+      path: '/goods',
+      name: 'GoodsList',
+      component: GoodsList
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: cart
     },
     {
       path: '/Address',
