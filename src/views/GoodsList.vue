@@ -221,6 +221,7 @@ export default {
         }).then((res)=>{
             var res=res.data;
             if(res.status==0){
+              this.$store.commit("updateCartCount",1);
                 this.mdShowCart=true;
             }else {
                 this.mdShow=true;
